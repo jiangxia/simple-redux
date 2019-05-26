@@ -15,7 +15,7 @@ export function gun(state = initState, action) {
     case AYNC_GUN:
       return { ...state, num: state.num + 1 }
     default:
-      return { ...state }
+      return initState;
   }
 }
 
