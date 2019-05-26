@@ -1,6 +1,5 @@
 const ADD_GUN = 'ADD_GUN';
 const REMOVE_GUN = 'REMOVE_GUN';
-const AYNC_GUN = 'AYNC_GUN';
 
 const initState = {
   num: 0
@@ -12,11 +11,13 @@ export function gun(state = initState, action) {
       return { ...state, num: state.num + 1 }
     case REMOVE_GUN:
       return { ...state, num: state.num - 1 }
-    case AYNC_GUN:
-      return { ...state, num: state.num + 1 }
     default:
       return initState;
   }
+}
+
+export function twiceGun () {
+  return [{type: ADD_GUN}, ayncGun()];
 }
 
 export function addGun() {
@@ -27,14 +28,10 @@ export function removeGun() {
   return { type: REMOVE_GUN };
 }
 
-function ayncGunNum() {
-  return { type: AYNC_GUN };
-}
-
 export function ayncGun() {
   return dispatch => {
     setTimeout(() => {
-      dispatch(ayncGunNum())
+      dispatch(addGun())
     }, 1000);
   }
 }
